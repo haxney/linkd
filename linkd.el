@@ -1188,6 +1188,7 @@ extra rules. Return the buffer."
 ;; The keybindings are in accord with the convention for minor-modes:
 ;; `C-c' followed by one of a set of reserved punctuation characters.
 
+;;;###autoload
 (define-minor-mode linkd-mode
     "Create or follow hypertext links.
 These link navigation commands are available:
@@ -1203,6 +1204,7 @@ These key bindings are in effect on a link:\n
 \\{linkd-map}"
   nil :lighter " Linkd" :keymap linkd-map (if linkd-mode (linkd-enable) (linkd-disable)))
 
+;;;###autoload
 (defun linkd-enable ()
   "Enable Linkd mode."
   (let ((modified-p (buffer-modified-p)))
@@ -1212,6 +1214,7 @@ These key bindings are in effect on a link:\n
     (font-lock-fontify-buffer)
     (set-buffer-modified-p modified-p)))
 
+;;;###autoload
 (defun linkd-disable ()
   "Disable Linkd mode."
   (let ((modified-p (buffer-modified-p)))
