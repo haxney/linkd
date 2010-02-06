@@ -13,7 +13,7 @@
 ;; Last-Updated: Thu Mar 12 19:33 2009
 ;;           By: sjohnson
 ;;     Update #: 618
-;; Package-Version: 0.9
+;; Package-Version: 0.9.1
 ;; Website, original version: http://dto.github.com/notebook/linkd.html
 ;; URL: http://www.emacswiki.org/cgi-bin/wiki/linkd.el
 ;; URL: http://www.emacswiki.org/emacs/linkd.tar.gz
@@ -197,11 +197,14 @@
 
 ;; (@* "User Options") -----------------------------------------------
 
-(defcustom linkd-use-icons nil
+(defcustom linkd-use-icons t
   "Non-nil means icons, instead of text bullets, are displayed for links."
   :type 'boolean :group 'linkd)
 
-(defcustom linkd-icons-directory "~/.linkd-icons" "Directory where linkd's icons are kept."
+(defcustom linkd-icons-directory (if load-file-name
+                                     (concat (file-name-directory load-file-name) "icons")
+                                   "~/.linkd-icons")
+  "Directory where linkd's icons are kept."
   :type 'directory :group 'linkd)
 
 (defcustom linkd-use-menu t
