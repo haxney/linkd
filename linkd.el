@@ -987,7 +987,7 @@ ACTION is :end, deactivate the datablock."
         ;; delete everything before first heading
         (goto-char (point-min))
         (re-search-forward linkd-export-heading-regexp)
-        (previous-line)
+        (forward-line -1)
         (end-of-line)
         (delete-region (point-min) (point))
         ;; now process each block in turn.
@@ -1218,7 +1218,7 @@ These key bindings are in effect on a link:\n
     (remove-hook 'before-save-hook 'linkd-deactivate-all-datablocks)
     (remove-hook 'after-save-hook 'linkd-activate-all-datablocks)
     ;; remove all linkd's overlays
-    (mapcar (lambda (overlay)
+    (mapc (lambda (overlay)
               (when (get-text-property (overlay-start overlay) 'linkd-fontified)
                 (delete-overlay overlay)))
             (overlays-in (point-min) (point-max)))
